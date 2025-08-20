@@ -1,4 +1,4 @@
-# PromptThief
+# The Prompt Stealing Fallacy: Rethinking Metrics, Attacks, and Defenses
 
 ## Overview
 
