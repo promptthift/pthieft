@@ -9,9 +9,24 @@ This repository contains the implementation of our research on prompt stealing a
 ```
 pthieft/
 ├── attack/                 # Attack implementation
-│   └── ms-swift/          # The RL framework we used
+│   ├── ms-swift/          # The RL framework we used
+│   │   ├── swift/         # Core SWIFT framework
+│   │   ├── examples/      # Training examples
+│   │   ├── scripts/       # Utility scripts
+│   │   ├── tests/         # Test files
+│   │   └── requirements/  # Dependency requirements
+│   ├── script/            # Attack training scripts
+│   │   ├── SFT.sh         # Supervised fine-tuning script
+│   │   └── llava_grpo.sh  # GRPO training script
+│   ├── data/              # Data processing utilities
+│   │   ├── process.py     # Data processing script
+│   │   ├── process_json.py # JSON data processing
+│   │   ├── resample.py    # Data resampling utility
+│   │   └── eval.py        # Evaluation script
+│   └── README.md          # Attack module documentation
 ├── defense/                # Defense implementations
 │   └── psa-defense-main/  # PSA defense framework
+├── requirement.txt         # Project dependencies
 └── README.md              # This file
 ```
 
