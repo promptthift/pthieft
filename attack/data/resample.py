@@ -141,16 +141,13 @@ def get_frequency_stats(texts: List[str]) -> Tuple[Dict[str, int], Dict[str, int
     return dict(subject_counter), dict(modifier_counter)
 
 def compute_clip_score(image1, image2, clip_model, preprocess):
-    # 使用preprocess处理图片
     image1_processed = preprocess(image1).unsqueeze(0).to(device)
     image2_processed = preprocess(image2).unsqueeze(0).to(device)
     
-    # 计算特征
     with torch.no_grad():
         image1_features = clip_model.encode_image(image1_processed)
         image2_features = clip_model.encode_image(image2_processed)
     
-    # 计算余弦相似度
     similarity = F.cosine_similarity(image1_features, image2_features)
     return similarity[0].item()
 
@@ -159,7 +156,6 @@ def filter_modifiers_by_semantics(modifiers: List[str], clip_model, threshold: f
     for modifier in modifiers:
         is_unique = True
         for unique_mod in unique_modifiers:
-            # 使用CLIP计算文本相似度
             if semantic_similarity(modifier, unique_mod, clip_model) > threshold:
                 is_unique = False
                 break

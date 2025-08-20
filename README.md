@@ -17,7 +17,7 @@ pthieft/
 
 ## Attack Method
 
-### MS-SWIFT Based Attack
+### Attack
 Located in `./attack/`
 
 Our attack leverages the MS-SWIFT framework to perform prompt stealing attacks on T2I models. The attack method is designed to extract sensitive prompts.

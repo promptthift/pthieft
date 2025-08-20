@@ -26,7 +26,6 @@ def create_json_file(data_split, filename, types = 'test'):
         })
         i +=1
     
-    # 写入 JSON 文件
     with open(os.path.join(output_dir, filename), 'w', encoding='utf-8') as f:
         json.dump(data_list, f, ensure_ascii=False, indent=2)
 
