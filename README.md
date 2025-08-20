@@ -41,7 +41,7 @@ Our attack leverages the MS-SWIFT framework to perform prompt stealing attacks o
 ## Defense Methods
 
 ### PSA Defense Framework
-Located in `/fred/oz339/zdeng/pthieft/defense/psa-defense-main/`
+Located in `./pthieft/defense/psa-defense-main/`
 
 We implement two defense strategies:
 
