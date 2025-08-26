@@ -14,7 +14,7 @@ class SimpleMLP(nn.Module):
             nn.ReLU(),
             nn.Linear(128, 64),
             nn.ReLU(),
-            nn.Linear(64, 1)  # 输出一个浮点数
+            nn.Linear(64, 1) 
         )
 
     def forward(self, x):
@@ -26,9 +26,7 @@ def main():
         shap_dict = json.load(f)
     modifiers = list(shap_dict.keys())
 
-    # slicing
-    # modifiers_test = modifiers[-100:]
-    # modifiers = modifiers[:-100]
+
 
     mlp = SimpleMLP(input_dim = 768)
     mlp = mlp.cuda()
@@ -38,12 +36,12 @@ def main():
     num_epochs = 100
     criterion = nn.MSELoss()
 
-    model_name = "bert-base-uncased"  # 或 "bert-base-chinese"（适用于中文）
+    model_name = "bert-base-uncased" 
     tokenizer = BertTokenizer.from_pretrained(model_name)
     bert = BertModel.from_pretrained(model_name)
     bert = bert.cuda()
 
-    # start training
+
     for epoch in range(num_epochs):
         random.shuffle(modifiers)
         loss_total = 0
@@ -55,7 +53,7 @@ def main():
                 inputs = {k: v.cuda() if isinstance(v, torch.Tensor) \
                           else v for k, v in inputs.items()}
                 embeddings = bert(**inputs)
-                token_embeddings = embeddings.last_hidden_state  # (batch_size, seq_len, hidden_dim)
+                token_embeddings = embeddings.last_hidden_state  
                 mean_embedding = token_embeddings.mean(dim=1)
             shap_pred = mlp(mean_embedding)
             shap_chunk = torch.tensor([shap_dict[m] for m \
@@ -69,7 +67,7 @@ def main():
             loss_total += loss.item() * len(modifiers_chunk)
 
 
-        # test
+
         loss_test = 0
         '''
         for i in range(0, len(modifiers_test), 10):
