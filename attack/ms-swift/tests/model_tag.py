@@ -9,20 +9,20 @@ import requests
 from swift.version import __version__
 
 
-# 打标
+
 class ModelTag(object):
     _URL = os.environ.get('MODEL_TAG_URL', None)
 
-    # 模型测试结果
+
     BATCH_COMMIT_RESULT_URL = f'{_URL}/batchCommitResult'
-    # 测试阶段完成
+
     BATCH_REFRESH_STAGE_URL = f'{_URL}/batchRefreshStage'
     # query_model_stage
     QUERY_MODEL_STAGE_URL = f'{_URL}/queryModelStage'
 
     HEADER = {'Content-Type': 'application/json'}
 
-    # 检测结果
+
     MODEL_SKIP = 0
     MODEL_FAIL = 1
     MODEL_PASS = 2
@@ -50,7 +50,7 @@ class ModelTag(object):
         # ItemResult list
         self.item_result = []
 
-    # 发送请求
+
     def _post_request(self, url, param):
         try:
             logging.info(url + ' query: ' + str(json.dumps(param, ensure_ascii=False)))
@@ -69,7 +69,7 @@ class ModelTag(object):
 
         return None
 
-    # 提交模型测试结果
+
     def batch_commit_result(self):
         try:
             param = {
@@ -97,7 +97,7 @@ class ModelTag(object):
 
         return
 
-    # 测试阶段完成
+
     def batch_refresh_stage(self):
         try:
             param = {
@@ -118,7 +118,7 @@ class ModelTag(object):
 
         return
 
-    # 查询模型某个阶段的最新测试结果（只返回单个结果
+
     def query_model_stage(self):
         try:
             param = {
@@ -134,7 +134,7 @@ class ModelTag(object):
 
         return None
 
-    # 提交模型UT测试结果
+
     """
         model_tag = ModelTag()
         model_tag.model = "XXX"
