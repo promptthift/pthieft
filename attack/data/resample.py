@@ -125,7 +125,6 @@ def load_jsonl(file_path: str) -> Dict[str, List[str]]:
 def extract_subject_modifiers(text: str) -> Tuple[str, List[str]]:
     parts = text.split(',')
     subject = parts[0].strip()
-    # 使用set去重，然后转回list
     modifiers = list(set(mod.strip() for mod in parts[1:]))
     return subject, modifiers
 
@@ -164,7 +163,7 @@ def filter_modifiers_by_semantics(modifiers: List[str], clip_model, threshold: f
     return unique_modifiers
 
 def semantic_similarity(text1: str, text2: str, clip_model) -> float:
-    # 使用CLIP的文本编码器计算相似度
+
     text_features1 = clip_model.encode_text(clip.tokenize(text1))
     text_features2 = clip_model.encode_text(clip.tokenize(text2))
     return 1 - cosine(text_features1, text_features2)
@@ -249,7 +248,7 @@ def main():
         total_sd_calls += sd_calls
 
 
-    with open("/fred/oz337/zdeng/sample_output/resampling_results2.json", "w") as f:
+    with open("./sample_output/resampling_results2.json", "w") as f:
         json.dump(results, f, indent=2)
 
 if __name__ == "__main__":
